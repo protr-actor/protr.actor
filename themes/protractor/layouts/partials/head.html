@@ -1,0 +1,49 @@
+<head prefix="og: http://ogp.me/ns/{{ if .IsHome | or .IsSection }}website{{ else }}article{{ end }}#">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="apple-touch-icon" href="" />
+  <link rel="shortcut icon" href="" />
+  <link type="image/x-icon" rel="icon" href="" />
+
+
+  <title>{{ .Title }} | {{ .Site.Title }}</title>
+  <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+  <link rel="canonical" href="{{ .Permalink }}" />
+  <meta name="robots" content="index, follow" />
+
+
+  <meta property="og:type" content="{{ if .IsHome | or .IsSection }}website{{ else }}article{{ end }}" />
+  <meta property="og:title" content="{{ .Title }}" />
+  <meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+  <meta property="og:url" content="{{ .Permalink }}" />
+  <meta property="og:img" content="" />
+
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@protr_actor" />
+  <meta name="twitter:title" content="{{ .Title }}" />
+  <meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+  <meta name="twitter:image" content="" />
+
+
+  {{ if .OutputFormats.Get "RSS" }}{{ with .OutputFormats.Get "RSS" }}
+  <link type="application/rss+xml" rel="alternate" title="{{ $.Title }}" href="{{ .RelPermalink }}" />
+  <link type="application/rss+xml" rel="feed" title="{{ $.Title }}" href="{{ .RelPermalink }}" />
+  {{ end }}{{ end }}
+
+
+  <link type="application/rss+xml" rel="alternate" title="" href="" />
+  <link type="application/rss+xml" rel="feed" title="" href="" />
+
+  {{if ne .Site.BaseURL "http://localhost:1313/"}}
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','');
+  </script>
+  {{ end }}
+</head>
